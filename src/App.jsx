@@ -1,5 +1,5 @@
-import { navigate, Route, Routes } from "react-router-dom";
-import navbar from "./components/Navbar";
+import { Navigate, Route, Routes } from "react-router-dom";
+import Navbar from "./components/Navbar";
 import CreateGroup from "./pages/CreateGroup";
 import Dashboard from "./pages/Dashboard";
 import GroupDetails from "./pages/GroupDetails";
@@ -12,12 +12,12 @@ import { isLoggedIn } from "./utils/storage";
 
 function ProtectedLayout({ children }) {
   if (!isLoggedIn()) {
-    return <navigate to="/login" replace />;
+    return <Navigate to="/login" replace />;
   }
 
   return (
     <>
-      <navbar />
+      <Navbar />
       <main>{children}</main>
     </>
   );

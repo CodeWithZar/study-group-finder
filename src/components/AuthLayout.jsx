@@ -1,4 +1,4 @@
-import { link } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 export default function AuthLayout({
   title,
@@ -9,13 +9,15 @@ export default function AuthLayout({
   footerLabel,
 }) {
   return (
-    <div className="flex min-h-screen items-center justify-center bg-gradeint-to-br from-blue-900 via-blue-900 to blue-950 px-4 py-10">
+    <div className="flex min-h-screen items-center justify-center bg-gradient-to-br from-blue-900 via-blue-900 to-blue-950 px-4 py-10">
       <div className="w-full max-w-md rounded-2xl bg-white p-8 shadow-xl">
         <div className="mb-8 text-center">
           <Link to="/login" className="text-2xl font-bold text-blue-900">
             Study Group Finder
           </Link>
+
           <h1 className="mt-4 text-xl font-semibold text-slate-900">{title}</h1>
+
           {subtitle && (
             <p className="mt-2 text-sm text-slate-600">{subtitle}</p>
           )}
@@ -25,14 +27,13 @@ export default function AuthLayout({
 
         {footerText && footerLink && (
           <p className="mt-6 text-center text-sm text-slate-600">
-            {footerText}
-            {""}
-            <link
+            {footerText}{" "}
+            <Link
               to={footerLink}
               className="font-semibold text-blue-700 hover:text-blue-900"
             >
               {footerLabel}
-            </link>
+            </Link>
           </p>
         )}
       </div>
