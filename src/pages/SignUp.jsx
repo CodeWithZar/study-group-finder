@@ -3,8 +3,9 @@ import { Navigate, useNavigate } from "react-router-dom";
 import AuthLayout from "../components/AuthLayout";
 import { isLoggedIn, signUp } from "../utils/storage";
 
-export default function signUp() {
+export default function SignUp() {
   const navigate = useNavigate();
+
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -19,31 +20,34 @@ export default function signUp() {
     const newErrors = {};
 
     if (!name.trim()) {
-      newErrors.name = "Name is required";
+      newErrors.name = "Name is required.";
     }
 
     if (!email.trim()) {
-      newErrors.email = "Email is required";
+      newErrors.email = "Email is required.";
     } else if (!email.includes("@")) {
-      newErrors.email = "Please enter a valid email address";
+      newErrors.email = "Please enter a valid email address.";
     }
 
     if (!password) {
-      newErrors.password = "Password is required";
+      newErrors.password = "Password is required.";
     } else if (password.length < 6) {
-      newErrors.password = "Password but me atleast 6 characters";
+      newErrors.password = "Password must be at least 6 characters.";
     }
 
-    if (password !== confirmPassword) {
-      newErrors.confirmPassword = "Passwords do not match";
+    if (!confirmPassword) {
+      newErrors.confirmPassword = "Please confirm your password.";
+    } else if (password !== confirmPassword) {
+      newErrors.confirmPassword = "Passwords do not match.";
     }
 
     setErrors(newErrors);
+
     return Object.keys(newErrors).length === 0;
   }
 
   function handleSubmit(event) {
-    event.prevenDefault();
+    event.preventDefault();
 
     if (!validate()) return;
 
@@ -52,7 +56,7 @@ export default function signUp() {
     if (result.success) {
       navigate("/dashboard");
     } else {
-      setErrors({ from: result.error });
+      setErrors({ form: result.error });
     }
   }
 
@@ -123,7 +127,7 @@ export default function signUp() {
           type="submit"
           className="w-full rounded-lg bg-amber-500 px-4 py-2.5 text-sm font-semibold text-blue-950 transition hover:bg-amber-400"
         >
-          Create account
+          Create Account
         </button>
       </form>
     </AuthLayout>
@@ -139,7 +143,9 @@ function Field({ label, id, error, children }) {
       >
         {label}
       </label>
+
       {children}
+
       {error && <p className="mt-1 text-sm text-red-600">{error}</p>}
     </div>
   );
