@@ -17,7 +17,7 @@ function SummaryCard({ label, value, accent = "blue" }) {
   };
 
   return (
-    <div className={`rounded-xl border p-5 ${colours[accent]}`}>
+    <div className={`rounded-xl border p-5 ${colors[accent]}`}>
       <p className="text-sm font-medium opacity-80">{label}</p>
       <p className="mt-1 text-2xl font-bold">{value}</p>
     </div>
@@ -74,12 +74,13 @@ export default function Dashboard() {
           <h2 className="text-xl font-semibold text-blue-900">
             Top Recommended Group
           </h2>
-          <link
+
+          <Link
             to="/groups"
             className="text-sm font-medium text-blue-700 hover:text-blue-900"
           >
-            View all groups →{" "}
-          </link>
+            View all groups →
+          </Link>
         </div>
 
         {topMatch ?
@@ -113,6 +114,7 @@ export default function Dashboard() {
             <p className="text-slate-600">
               You have not joined any groups yet.
             </p>
+
             <Link
               to="/groups"
               className="mt-3 inline-block text-sm font-medium text-blue-700 hover:text-blue-900"
