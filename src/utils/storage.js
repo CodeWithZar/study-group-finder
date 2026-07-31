@@ -53,6 +53,7 @@ export function signUp(name, email, password) {
   }
 
   const account = { name, email, password };
+
   writeJson(KEYS.accounts, [...accounts, account]);
 
   saveProfile({
@@ -62,6 +63,7 @@ export function signUp(name, email, password) {
   });
 
   writeJson(KEYS.session, { email });
+
   return { success: true };
 }
 
@@ -71,17 +73,24 @@ export function login(email, password) {
   );
 
   if (!account || account.password !== password) {
-    return { success: false, error: "Invalid email or password." };
+    return {
+      success: false,
+      error: "Invalid email or password.",
+    };
   }
 
   const profile = getProfile();
+
   saveProfile({
     ...profile,
     name: account.name,
     email: account.email,
   });
 
-  writeJson(KEYS.session, { email: account.email });
+  writeJson(KEYS.session, {
+    email: account.email,
+  });
+
   return { success: true };
 }
 
@@ -123,6 +132,7 @@ export function isGroupJoined(groupId) {
 
 export function joinGroup(groupId) {
   const joined = getJoinedGroupIds();
+
   if (!joined.includes(groupId)) {
     writeJson(KEYS.joinedGroups, [...joined, groupId]);
   }
@@ -137,7 +147,20 @@ export function leaveGroup(groupId) {
 
 export function addCustomGroup(group) {
   const customGroups = getCustomGroups();
+
   saveCustomGroups([...customGroups, group]);
+}
+
+export function deleteCustomGroup(groupId) {
+  const updated = getCustomGroups().filter((group) => group.id !== groupId);
+
+  saveCustomGroups(updated);
+
+  leaveGroup(groupId);
+}
+
+export function isCustomGroup(groupId) {
+  return getCustomGroups().some((group) => group.id === groupId);
 }
 
 export function resetAllData() {
@@ -150,9 +173,12 @@ export function resetAllData() {
 
 export function getNextGroupId() {
   const allGroups = getAllGroups();
+
   const maxId = allGroups.reduce((max, group) => {
     const numericPart = parseInt(group.id.replace("g", ""), 10);
+
     return Number.isNaN(numericPart) ? max : Math.max(max, numericPart);
   }, 0);
+
   return `g${maxId + 1}`;
 }
