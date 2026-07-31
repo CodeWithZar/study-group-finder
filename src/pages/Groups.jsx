@@ -10,17 +10,19 @@ import { getAllGroups, getProfile, isGroupJoined } from "../utils/storage";
 
 export default function Groups() {
   const profile = getProfile();
+
   const [search, setSearch] = useState("");
-  const [moduleFilter, setModuleFilter] = useState("");
-  const [studyModeFilter, setStudyModeFilter] = useState("");
-  const [campusFilter, setCampusFilter] = useState("");
+  const [moduleFilter, setModuleFilter] = useState("All");
+  const [studyModeFilter, setStudyModeFilter] = useState("All");
+  const [campusFilter, setCampusFilter] = useState("All");
 
   const filteredGroups = useMemo(() => {
     const allGroups = getAllGroups();
     const ranked = rankGroupsByMatch(profile, allGroups);
 
-    return ranked.filter(({ groups }) => {
+    return ranked.filter(({ group }) => {
       const searchText = search.toLowerCase();
+
       const matchesSearch =
         !searchText ||
         group.title.toLowerCase().includes(searchText) ||
@@ -29,8 +31,10 @@ export default function Groups() {
 
       const matchesModule =
         moduleFilter === "All" || group.module === moduleFilter;
+
       const matchesStudyMode =
         studyModeFilter === "All" || group.studyMode === studyModeFilter;
+
       const matchesCampus =
         campusFilter === "All" || group.campus === campusFilter;
 
@@ -43,6 +47,7 @@ export default function Groups() {
   return (
     <div className="mx-auto max-w-6xl px-4 py-8">
       <h1 className="mb-2 text-3xl font-bold text-blue-900">Study Groups</h1>
+
       <p className="mb-6 text-slate-600">
         Browse study groups ranked by compatibility with your profile.
       </p>
@@ -56,12 +61,13 @@ export default function Groups() {
             >
               Search
             </label>
+
             <input
               id="search"
               type="text"
               value={search}
               onChange={(event) => setSearch(event.target.value)}
-              placeholder="Search by title, module..."
+              placeholder="Search by title or module..."
               className="w-full rounded-lg border border-slate-300 px-3 py-2 text-sm focus:border-blue-500 focus:outline-none focus:ring-2 focus:ring-blue-200"
             />
           </div>
@@ -73,6 +79,7 @@ export default function Groups() {
             >
               Module
             </label>
+
             <select
               id="module"
               value={moduleFilter}
@@ -80,6 +87,7 @@ export default function Groups() {
               className="w-full rounded-lg border border-slate-300 px-3 py-2 text-sm focus:border-blue-500 focus:outline-none focus:ring-2 focus:ring-blue-200"
             >
               <option value="All">All modules</option>
+
               {moduleOptions.map((module) => (
                 <option key={module} value={module}>
                   {module}
@@ -95,6 +103,7 @@ export default function Groups() {
             >
               Study Mode
             </label>
+
             <select
               id="studyMode"
               value={studyModeFilter}
@@ -102,6 +111,7 @@ export default function Groups() {
               className="w-full rounded-lg border border-slate-300 px-3 py-2 text-sm focus:border-blue-500 focus:outline-none focus:ring-2 focus:ring-blue-200"
             >
               <option value="All">All modes</option>
+
               {studyModeOptions.map((mode) => (
                 <option key={mode} value={mode}>
                   {mode}
@@ -117,6 +127,7 @@ export default function Groups() {
             >
               Campus
             </label>
+
             <select
               id="campus"
               value={campusFilter}
@@ -124,6 +135,7 @@ export default function Groups() {
               className="w-full rounded-lg border border-slate-300 px-3 py-2 text-sm focus:border-blue-500 focus:outline-none focus:ring-2 focus:ring-blue-200"
             >
               <option value="All">All campuses</option>
+
               {campusOptions.map((campus) => (
                 <option key={campus} value={campus}>
                   {campus}
@@ -136,8 +148,7 @@ export default function Groups() {
 
       <p className="mb-4 text-sm text-slate-500">
         Showing {filteredGroups.length} group
-        {filteredGroups.length !== 1 ? "s" : ""} (sorted by compatibility,
-        highest first)
+        {filteredGroups.length !== 1 ? "s" : ""} (sorted by compatibility)
       </p>
 
       {filteredGroups.length > 0 ?
@@ -152,7 +163,7 @@ export default function Groups() {
           ))}
         </div>
       : <div className="rounded-xl border border-dashed border-slate-300 bg-white p-8 text-center text-slate-600">
-          No groups match your filters. Try adjusting your search or filters.
+          No groups match your filters.
         </div>
       }
     </div>
