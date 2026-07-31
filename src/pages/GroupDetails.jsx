@@ -8,6 +8,8 @@ import {
   isGroupJoined,
   joinGroup,
   leaveGroup,
+  deleteCustomGroup,
+  isCustomGroup,
 } from "../utils/storage";
 
 export default function GroupDetails() {
@@ -37,6 +39,7 @@ export default function GroupDetails() {
 
   const match = calculateMatch(profile, group);
   const joined = isGroupJoined(group.id);
+  const custom = isCustomGroup(group.id);
   const isFull = group.members >= group.capacity;
 
   function handleJoinLeave() {
@@ -46,6 +49,13 @@ export default function GroupDetails() {
       joinGroup(group.id);
     }
     setRefreshKey((key) => key + 1);
+  }
+
+  function handleDelete() {
+    if (window.confirm("Delete this group?")) {
+      deleteCustomGroup(group.id);
+      navigate("/groups");
+    }
   }
 
   return (
@@ -110,6 +120,17 @@ export default function GroupDetails() {
               "Group Full"
             : "Join Group"}
           </button>
+
+          {custom && (
+            <button
+              type="button"
+              onClick={handleDelete}
+              className="rounded-lg bg-red-600 px-5 py-2.5 text-sm font-semibold text-white hover:bg-red-700"
+            >
+              Delete Group
+            </button>
+          )}
+
           <button
             type="button"
             onClick={() => navigate("/groups")}
