@@ -36,13 +36,13 @@ export default function MatchBreakdown({ match }) {
               <div className="mb-1 flex justify-between text-sm">
                 <span className="text-slate-700">{item.label}</span>
                 <span className="font-medium text-slate-900">
-                  {items.points}/{items.max}
+                  {item.points}/{item.max}
                 </span>
               </div>
               <div className="h-2 overflow-hidden rounded-full bg-slate-100">
                 <div
                   className="h-full rounded-full bg-blue-700 transition-all"
-                  style={{ width: `${(items.points / items.max) * 100}%` }}
+                  style={{ width: `${(item.points / item.max) * 100}%` }}
                 ></div>
               </div>
             </div>

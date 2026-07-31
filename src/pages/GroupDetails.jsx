@@ -132,7 +132,7 @@ function DetailItem({ label, value }) {
         className="text-xs font-medium uppercase tracking-wide 
       text-slate-500"
       >
-        {label}
+        {value}
       </p>
       <p className="mt-1 text-sm font-medium text-slate-900">{label}</p>
     </div>
