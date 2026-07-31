@@ -19,7 +19,7 @@ export default function Profile() {
   function toggleModule(module) {
     SetProfile((current) => {
       const modules =
-        current.module.includes(module) ?
+        current.modules.includes(module) ?
           current.modules.filter((item) => item !== module)
         : [...current.modules, module];
       return { ...current, modules };
