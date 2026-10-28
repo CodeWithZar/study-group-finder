@@ -1,16 +1,93 @@
-# React + Vite
+# Study Group Finder 🎓
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A web application developed as a Final Year Project (FYP) to help students discover study groups, connect with peers, and collaborate with others who share similar academic interests.
 
-Currently, two official plugins are available:
+## 📌 Overview
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+Study Group Finder aims to make collaborative learning easier by providing students with a platform to find study partners and explore study groups based on their academic interests and learning goals.
 
-## React Compiler
+The application focuses on providing an intuitive user experience, organised navigation, and an accessible interface for students.
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+## ✨ Features
 
-## Expanding the ESLint configuration
+- **User Authentication** — User login and registration.
+- **Study Group Discovery** — Find study groups related to academic interests.
+- **Student Collaboration** — Connect with peers for collaborative learning.
+- **Navigation System** — Easily navigate between application sections.
+- **User Interface** — Clean and intuitive application design.
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+## 🛠️ Tech Stack
+
+- **React** — Frontend user interface.
+- **Vite** — Development server and build tooling.
+- **JavaScript** — Application logic.
+- **TailWind CSS** — Styling and layout.
+
+## 🚀 Getting Started
+
+### Prerequisites
+
+Make sure you have the following installed:
+
+- [Node.js](https://nodejs.org/)
+- npm
+- Git
+
+### Installation
+
+1. Clone the repository:
+
+   ```bash
+   git clone YOUR_REPOSITORY_URL
+   ```
+
+2. Navigate to the project directory:
+
+   ```bash
+   cd study-group-finder
+   ```
+
+3. Install the dependencies:
+
+   ```bash
+   npm install
+   ```
+
+4. Start the development server:
+
+   ```bash
+   npm run dev
+   ```
+
+5. Open the local URL displayed in your terminal.
+
+## 📂 Project Structure
+
+The project follows a React and Vite application structure. The exact directory layout depends on the implementation.
+
+```text
+study-group-finder/
+├── public/
+├── src/
+│   ├── assets/
+│   ├── components/
+│   ├── App.jsx
+│   ├── main.jsx
+│   └── index.css
+├── index.html
+├── package.json
+├── vite.config.js
+└── README.md
+```
+
+## 🎯 Project Objectives
+
+- Simplify the process of finding study partners.
+- Encourage collaborative learning among students.
+- Help students connect through shared academic interests.
+- Apply software engineering principles to a practical web application.
+
+## 📄 License
+
+No license has been specified for this project.
+
