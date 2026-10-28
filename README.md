@@ -38,7 +38,7 @@ Make sure you have the following installed:
 1. Clone the repository:
 
    ```bash
-   git clone YOUR_REPOSITORY_URL
+   git clone (https://github.com/CodeWithZar/study-group-finder)
    ```
 
 2. Navigate to the project directory:
